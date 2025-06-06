@@ -1,1 +1,96 @@
 @import "tailwindcss";
+
+body {
+  /* background-color: #262829; */
+  background: var(--focus-color);
+}
+
+:root {
+  /* --focus-color: linear-gradient(90deg, #4b6cb7 0%, #182848 100%); */
+  /* --short-color: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
+  /* --long-color: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); */
+  --focus-color: #422d5e;
+  --short-color: #2698ac;
+  --long-color: #8a2d7a;
+}
+
+.btn {
+  min-width: 70px;
+  padding: 10px;
+  background-color: rgba(255  , 255, 255, .3);
+  color: white;
+  list-style-type: none;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+
+  &[data-selected='true'] {
+    font-weight: 700;
+  }
+}
+
+.option-button.focus-on {
+   &[data-selected='true'] {
+    background-color: var(--focus-color);
+  }
+}
+
+.option-button.short-break {
+  &[data-selected='true'] {
+    background-color: var(--short-color); 
+  }
+}
+
+.option-button.long-break {
+  &[data-selected='true'] {
+    background-color: var(--long-color);
+  }
+}
+
+body.focus-on { 
+  background-color: var(--focus-color);
+}
+
+body.short-break {
+  background-color: var(--short-color); 
+}
+
+body.long-break {
+  background-color: var(--long-color);
+}
+
+#close-modal, #save-button {
+  color: #808080;
+  background-color: #eeececcb;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color:#eeececcb ;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: gray;
+}
+
+.modal-interval {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4b4b4b;
+  }
+  input {
+    width: 70px;
+  }
+}
