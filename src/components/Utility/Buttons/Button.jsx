@@ -1,11 +1,16 @@
+
 const Button = ({ buttonText, onclick, className = '', ...rest }) => {
-  const allClassNames = `p-[10px] bg-[#ffffff4d] border-0 rounded-[5px] cursor-pointer ${className}`
+
+  const buttonBaseStyle = `cursor-pointer border-0 bg-[#ffffff4d] hover:opacity-85 rounded-[5px] p-[10px] font-semibold`
+  const allClassNames = `${buttonBaseStyle} ${className}`;
+
   return (
     <button
       type="button"
-      onClick={onclick}
       className={allClassNames}
-      {...rest}>
+      {...rest}
+      onClick={onclick}
+    >
       {buttonText}
     </button>
   )

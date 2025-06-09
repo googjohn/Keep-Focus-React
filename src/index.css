@@ -94,3 +94,7 @@ label {
     width: 70px;
   }
 }
+#start-button {
+  color: #422d5e;
+  font-weight: bold;
+}

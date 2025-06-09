@@ -1,8 +1,33 @@
-import OpenCloseModal from "../Utility/Buttons/ActionButtons/OpenCloseModal";
 import Button from "../Utility/Buttons/Button";
+import { useAppContext } from "../Utility/AppContenxt/AppContext";
+import { useEffect } from "react";
 
 const MainBody = () => {
-  const optionButtonsClassNames = `min-w-[70px] text-white font-semibold option-button`
+
+  const { selected, updateSelected } = useAppContext();
+  const optionButtonsClassNames = `option-button min-w-[70px] text-white`;
+
+  // add class to document.body
+  useEffect(() => {
+
+    const allClasses = ['focus-on', 'short-break', 'long-break']
+
+    // always remove the previous state
+    allClasses.forEach(className => {
+      document.body.classList.remove(className);
+    })
+
+    document.body.classList.add(selected);
+
+    // clean up function:
+    return () => {
+      allClasses.forEach(className => {
+        document.body.classList.remove(className);
+      })
+    }
+
+  }, [selected])
+
   return (
     <main className="mt-8 mx-auto max-w-[35vw] min-w-[400px] min-h-full">
       <div id="options-container" className="w-full min-h-[300px] p-5 flex flex-col justify-between items-center relative bg-[#ffffff4d] rounded-lg overflow-hidden">
@@ -10,9 +35,27 @@ const MainBody = () => {
           <rect className="progress-rect" x="0" y="0" width="100%" height="100%" />
         </svg>
         <div id="option-buttons" className="flex gap-1.5">
-          <Button buttonText={"Focus On"} className={`${optionButtonsClassNames} focus-on`} data-selected='true' />
-          <Button buttonText={"Short Break"} className={`${optionButtonsClassNames} short-break`} data-selected='false' />
-          <Button buttonText={"Long Break"} className={`${optionButtonsClassNames} long-break`} data-selected='false' />
+          <Button
+            buttonText={"Focus On"}
+            className={`focus-on ${optionButtonsClassNames}`}
+            name="focus-on"
+            data-selected={selected === 'focus-on'}
+            onclick={updateSelected}
+          />
+          <Button
+            buttonText={"Short Break"}
+            className={`short-break ${optionButtonsClassNames}`}
+            name="short-break"
+            data-selected={selected === 'short-break'}
+            onclick={updateSelected}
+          />
+          <Button
+            buttonText={"Long Break"}
+            className={`long-break ${optionButtonsClassNames}`}
+            name="long-break"
+            data-selected={selected === 'long-break'}
+            onclick={updateSelected}
+          />
         </div>
         <div id="time-container">
           <div id="clock-display">
@@ -25,7 +68,7 @@ const MainBody = () => {
             data-timer-active="false"
             value="start"
             id="start-button"
-            className="min-w-[150px] text-2xl font-bold text-[#422d5e] uppercase"
+            className="min-w-[150px] text-2xl uppercase"
           />
         </div>
       </div>

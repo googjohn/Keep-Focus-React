@@ -1,16 +1,24 @@
-import OpenCloseModal from "../Buttons/ActionButtons/OpenCloseModal"
+import { useAppContext } from "../AppContenxt/AppContext"
 import Button from "../Buttons/Button"
 
 const Modal = () => {
+
+  const { modalActive, updateModalActive } = useAppContext()
+  const classNames = `min-w-full min-h-full absolute top-0 right-0 pt-12 bg-[#807b7b3b]`
+
   return (
     <>
-      <div id="modal-container" className="hidden min-w-full min-h-full absolute top-0 right-0 pt-12 bg-[#807b7b3b]" data-modal-active="false">
+      <div
+        id="modal-container"
+        className={modalActive ? `${classNames}` : `hidden ${classNames}`}
+        data-modal-active={modalActive}
+      >
         <div id="modal" className="max-w-[400px] h-full m-auto bg-gray-50 rounded-lg">
           <div id="modal-header" className="border-[#b6b2b2] border-b-2 text-center text-[1.5rem] p-2.5">
             <h2 className="relative font-semibold text-[1.3rem] text-[#808080]">SETTING
               <Button
                 buttonText={'X'}
-                onclick={OpenCloseModal}
+                onclick={updateModalActive}
                 className="absolute top-0 right-0 py-0 text-[#808080]"
                 id="close-modal"
               />
@@ -53,7 +61,7 @@ const Modal = () => {
                 <div className="item">
                   <Button
                     buttonText={'Save'}
-                    onclick={OpenCloseModal}
+                    onclick={updateModalActive}
                     className="min-w-[150px] font-bold block m-auto text-2xl uppercase"
                     id="save-button"
                   />

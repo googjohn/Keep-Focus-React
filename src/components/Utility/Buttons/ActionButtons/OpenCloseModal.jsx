@@ -1,12 +1,11 @@
 
-const OpenCloseModal = (e) => {
-  const btnElement = e.target;
+const OpenCloseModal = (event, modalActive, updateModalActive) => {
+  const btnElement = event.target;
 
   const setModalDataset = (element) => {
-    if (element.dataset.modalActive === 'false') {
-      element.dataset.modalActive = 'true'
-    } else {
-      element.dataset.modalActive = 'false'
+    if (element) {
+      updateModalActive()
+      element.dataset.modalActive = modalActive
     }
   }
 
