@@ -1,10 +1,12 @@
 import Button from "../Utility/Buttons/Button";
-import { useAppContext } from "../Utility/AppContenxt/AppContext";
-import { useEffect } from "react";
+import { UseAppContext } from "../Utility/AppContenxt/UseAppContext";
+import React, { useEffect } from "react";
+import TimeDisplay from "../Utility/Timer/TimeDisplay";
+
 
 const MainBody = () => {
 
-  const { selected, updateSelected } = useAppContext();
+  const { selected, updateSelected } = UseAppContext();
   const optionButtonsClassNames = `option-button min-w-[70px] text-white`;
 
   // add class to document.body
@@ -59,7 +61,7 @@ const MainBody = () => {
         </div>
         <div id="time-container">
           <div id="clock-display">
-            <span className="font-medium text-[7.6em] text-white">25:00</span>
+            <TimeDisplay duration={120} />
           </div>
         </div>
         <div id="start-button-container">

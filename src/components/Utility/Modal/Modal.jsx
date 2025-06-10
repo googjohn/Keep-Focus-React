@@ -1,9 +1,9 @@
-import { useAppContext } from "../AppContenxt/AppContext"
+import { UseAppContext } from "../AppContenxt/UseAppContext"
 import Button from "../Buttons/Button"
 
 const Modal = () => {
 
-  const { modalActive, updateModalActive } = useAppContext()
+  const { modalActive, updateModalActive } = UseAppContext()
   const classNames = `min-w-full min-h-full absolute top-0 right-0 pt-12 bg-[#807b7b3b]`
 
   return (

@@ -31,18 +31,21 @@ body {
 
 .option-button.focus-on {
    &[data-selected='true'] {
+    font-weight: 700;
     background-color: var(--focus-color);
   }
 }
 
 .option-button.short-break {
   &[data-selected='true'] {
+    font-weight: 700;
     background-color: var(--short-color); 
   }
 }
 
 .option-button.long-break {
   &[data-selected='true'] {
+    font-weight: 700;
     background-color: var(--long-color);
   }
 }
