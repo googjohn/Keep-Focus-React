@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { UseAppContext } from "../AppContenxt/UseAppContext"
 import Button from "../Buttons/Button"
 
@@ -35,22 +36,22 @@ const Modal = () => {
                 </div>
                 <div className="modal-content">
                   <div className="modal-items py-[5px] flex gap-[10px]">
-                    <div className="item1">
+                    <div className="item1 input-group">
                       <label htmlFor="modal-focus">Focus</label>
-                      <input type="number" className="modal-input" name="focus-on" min="1" data-value="25" placeholder="25" id="modal-focus" />
+                      <input type="number" className="modal-input" name="focus-on" min="1" data-value="25" value={25} placeholder="25" id="modal-focus" />
                     </div>
-                    <div className="item2">
+                    <div className="item2 input-group">
                       <label htmlFor="modal-short-break">Short Break</label>
-                      <input type="number" className="modal-input" name="short-break" min="1" data-value="5" placeholder="5" id="modal-short-break" />
+                      <input type="number" className="modal-input" name="short-break" min="1" data-value="5" value={5} placeholder="5" id="modal-short-break" />
                     </div>
-                    <div className="item3">
+                    <div className="item3 input-group">
                       <label htmlFor="modal-long-break">Long Break</label>
-                      <input type="number" className="modal-input" name="long-break" min="1" data-value="15" placeholder="15" id="modal-long-break" />
+                      <input type="number" className="modal-input" name="long-break" min="1" data-value="15" value={15} placeholder="15" id="modal-long-break" />
                     </div>
                   </div>
                   <div className="modal-interval py-[5px]">
                     <label htmlFor="interval" className="modal-content-title">Long Break Interval</label>
-                    <input type="number" className="modal-input interval" name="interval" min="3" placeholder="4" data-value="4" id="interval" />
+                    <input type="number" className="modal-input interval" name="interval" min="3" value={4} placeholder="4" data-value="4" id="interval" />
                   </div>
                 </div>
               </div>

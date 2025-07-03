@@ -2,13 +2,15 @@ import Button from "../Utility/Buttons/Button";
 import { UseAppContext } from "../Utility/AppContenxt/UseAppContext";
 import React, { useEffect } from "react";
 import TimeDisplay from "../Utility/Timer/TimeDisplay";
+import { useTimerFunction } from "../Utility/Timer/TimerFunction";
 
 
 const MainBody = () => {
-
-  const { selected, updateSelected } = UseAppContext();
+  const userInput = 15;
   const optionButtonsClassNames = `option-button min-w-[70px] text-white`;
 
+  const { isActive, setIsActive, setTimeleft, timeleft } = useTimerFunction(userInput)
+  const { selected, updateSelected } = UseAppContext();
   // add class to document.body
   useEffect(() => {
 
@@ -61,16 +63,25 @@ const MainBody = () => {
         </div>
         <div id="time-container">
           <div id="clock-display">
-            <TimeDisplay duration={120} />
+            <TimeDisplay duration={timeleft} />
           </div>
         </div>
         <div id="start-button-container">
           <Button
-            buttonText={"Start"}
+            buttonText={isActive ? 'Pause' : 'Start'}
             data-timer-active="false"
             value="start"
             id="start-button"
             className="min-w-[150px] text-2xl uppercase"
+            onclick={() => {
+              setIsActive(!isActive)
+              if (timeleft === 0 && !isActive) {
+                setTimeleft(userInput)
+                setIsActive(true)
+              } else {
+                setTimeleft(timeleft)
+              }
+            }}
           />
         </div>
       </div>

@@ -1,18 +1,21 @@
-// import { useState } from 'react'
-import Header from './components/Header/Header'
-import MainBody from './components/Main-Body/MainBody'
-import Modal from './components/Utility/Modal/Modal'
-import { AppContextProvider } from './components/Utility/AppContenxt/AppContext'
+import { useState } from 'react'
+import Header from './componentsInUse/Header/Header'
 import './index.css'
 
 export default function App() {
+  // "focus-on" | "short-break" | "long-break"
+  const [selectedMode, setSelectedMode] = useState('focus-on')
+
+  const handleOpenModal = () => {
+    setSelectedMode(!selectedMode)
+  }
   return (
     <>
-      <AppContextProvider>
-        <Header />
-        <MainBody />
-        <Modal />
-      </AppContextProvider>
+      <div id="App" className={selectedMode}>
+        <Header handleOpenModal={handleOpenModal} />
+        {/* <MainBody /> */}
+        {/* <Modal /> */}
+      </div>
     </>
   )
 }
