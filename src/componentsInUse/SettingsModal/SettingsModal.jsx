@@ -4,7 +4,7 @@ export default function SettingsModal({
   settings,
   isModalOpen,
   handleOnChange,
-  handleOpenModal
+  handleOpenModal,
 }) {
   const containerStyle = "fixed z-20 top-0 right-0 w-screen h-screen bg-[#807b7b3b]"
   return (

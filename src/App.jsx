@@ -25,6 +25,7 @@ export default function App() {
     case 'long-break': initialDuration = settings.longBreak; break;
   }
 
+  // init timeleft
   const { timeleft, setTimeleft, isRunning, setIsRunning } = useCountdown(initialDuration);
 
   /* handlers */
@@ -41,6 +42,8 @@ export default function App() {
 
   const handleOnChangeSettings = useCallback((e) => {
     const { name, value } = e.target;
+    setIsRunning(false);
+
     let keyToUpdate;
     switch (name) {
       case 'focus-on': keyToUpdate = 'focusOn'; break;

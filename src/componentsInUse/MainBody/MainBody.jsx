@@ -13,6 +13,7 @@ export default function MainBody({
   isRunning,
   setIsRunning,
   settings,
+  handleOnSave
 }) {
   const baseStyle = `w-full min-h-[300px] p-5 flex 
     flex-col justify-between items-center relative 
@@ -32,7 +33,7 @@ export default function MainBody({
   const MULTIPLIER = 1;
   useEffect(() => {
     setTimeleft(duration * MULTIPLIER)
-  }, [selectedMode])
+  }, [duration])
 
   // auto countdown
   useEffect(() => {
