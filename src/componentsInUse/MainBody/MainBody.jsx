@@ -24,13 +24,12 @@ export default function MainBody({
   const { playAlarm, stopAlarm } = useAlarm(alarmRefObj);
   const [focusCount, setFocusCount] = useState(1);
 
-
-  let duration;
-  switch (selectedMode) {
-    case 'focus-on': duration = focusOn; break;
-    case 'short-break': duration = shortBreak; break;
-    case 'long-break': duration = longBreak; break;
+  const modeSelection = {
+    'focus-on': focusOn,
+    'short-break': shortBreak,
+    'long-break': longBreak
   }
+  let duration = modeSelection[selectedMode];
 
   const MULTIPLIER = 1;
   useEffect(() => {

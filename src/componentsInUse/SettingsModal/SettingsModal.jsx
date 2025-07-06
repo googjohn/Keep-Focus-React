@@ -1,4 +1,5 @@
 import Button from "../Utility/Button"
+import { SaveSettings } from "../Utility/SaveSettings"
 
 export default function SettingsModal({
   settings,
@@ -7,6 +8,7 @@ export default function SettingsModal({
   handleOpenModal,
 }) {
   const containerStyle = "fixed z-20 top-0 right-0 w-screen h-screen bg-[#807b7b3b]"
+
   return (
     <>
       <div
@@ -26,6 +28,10 @@ export default function SettingsModal({
 
 function Modal({ handleOnClick, handleOnChange, settings }) {
   const modalStyle = "max-w-[400px] mt-[80px] h-auto m-auto bg-gray-50 border rounded-lg"
+  const handleOpenModalAndSaveSettings = () => {
+    handleOnClick();
+    SaveSettings(settings);
+  }
   return (
     <>
       <div id="modal" className={modalStyle}>
@@ -49,7 +55,7 @@ function Modal({ handleOnClick, handleOnChange, settings }) {
               <Content
                 contentType={'button-group'}
                 handleOnChange={handleOnChange}
-                handleOnClick={handleOnClick}
+                handleOnClick={handleOpenModalAndSaveSettings}
                 settings={settings}
               />
             </ModalContent>

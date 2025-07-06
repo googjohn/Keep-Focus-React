@@ -1,9 +1,10 @@
-import { useState, useCallback, useRef, useMemo } from 'react'
-import './index.css'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Header from './componentsInUse/Header/Header'
 import SettingsModal from './componentsInUse/SettingsModal/SettingsModal'
 import useCountdown from './componentsInUse/Utility/Countdown';
 import MainBody from './componentsInUse/MainBody/MainBody';
+import { UseSavedSettings } from './componentsInUse/Utility/SaveSettings';
+import './index.css'
 
 export default function App() {
   // "focus-on" | "short-break" | "long-break"
@@ -17,6 +18,11 @@ export default function App() {
     interval: 4
   });
 
+  // call/initialize settings if there is user input saved
+  useEffect(() => {
+    UseSavedSettings(setSettings)
+  }, [])
+
   // init alarm audio
   const alarmRef = useRef(new Audio('/sound/alarm-buzzer.wav'));
   const alarmRefTimeoutId = useRef(null);
@@ -24,13 +30,13 @@ export default function App() {
     return { alarmRef, alarmRefTimeoutId }
   }, [])
 
-
-  let initialDuration;
-  switch (selectedMode) {
-    case 'focus-on': initialDuration = settings.focusOn; break;
-    case 'short-break': initialDuration = settings.shortBreak; break;
-    case 'long-break': initialDuration = settings.longBreak; break;
+  const modeSelection = {
+    'focus-on': settings.focusOn,
+    'short-break': settings.shortBreak,
+    'long-break': settings.longBreak
   }
+
+  let initialDuration = modeSelection[selectedMode]
 
   // init timeleft
   const { timeleft, setTimeleft, isRunning, setIsRunning } = useCountdown(initialDuration);
