@@ -1,9 +1,10 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import './index.css'
 import Header from './componentsInUse/Header/Header'
 import SettingsModal from './componentsInUse/SettingsModal/SettingsModal'
 import useCountdown from './componentsInUse/Utility/Countdown';
 import MainBody from './componentsInUse/MainBody/MainBody';
+import useAlarm from './componentsInUse/Utility/Alarm';
 
 export default function App() {
   // "focus-on" | "short-break" | "long-break"
@@ -26,6 +27,7 @@ export default function App() {
 
   const { timeleft, setTimeleft, isRunning, setIsRunning } = useCountdown(initialDuration);
 
+  /* handlers */
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen)
   }
@@ -44,6 +46,8 @@ export default function App() {
       case 'focus-on': keyToUpdate = 'focusOn'; break;
       case 'short-break': keyToUpdate = 'shortBreak'; break;
       case 'long-break': keyToUpdate = 'longBreak'; break;
+      case 'interval': keyToUpdate = 'interval'; break;
+      default: return;
     }
     setSettings(prev => {
       return {
@@ -60,8 +64,8 @@ export default function App() {
         <SettingsModal
           settings={settings}
           isModalOpen={isModalOpen}
-          handleOpenModal={handleOpenModal}
           handleOnChange={handleOnChangeSettings}
+          handleOpenModal={handleOpenModal}
         />
         <MainBody
           selectedMode={selectedMode}
@@ -72,6 +76,7 @@ export default function App() {
           setIsRunning={setIsRunning}
           setTimeleft={setTimeleft}
           settings={settings}
+        // alarm={{ playAndStopAlarm, alarmRef }}
         />
       </div>
     </>

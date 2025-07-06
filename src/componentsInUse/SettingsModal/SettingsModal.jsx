@@ -2,8 +2,8 @@ import Button from "../Utility/Button"
 
 export default function SettingsModal({
   settings,
-  handleOnChange,
   isModalOpen,
+  handleOnChange,
   handleOpenModal
 }) {
   const containerStyle = "fixed z-20 top-0 right-0 w-screen h-screen bg-[#807b7b3b]"
@@ -39,6 +39,7 @@ function Modal({ handleOnClick, handleOnChange, settings }) {
               <Content
                 contentType={'input-group'}
                 handleOnChange={handleOnChange}
+                handleOnClick={handleOnClick}
                 settings={settings}
               />
             </ModalContent>
@@ -47,6 +48,7 @@ function Modal({ handleOnClick, handleOnChange, settings }) {
             <ModalContent contentTitle={''}>
               <Content
                 contentType={'button-group'}
+                handleOnChange={handleOnChange}
                 handleOnClick={handleOnClick}
                 settings={settings}
               />

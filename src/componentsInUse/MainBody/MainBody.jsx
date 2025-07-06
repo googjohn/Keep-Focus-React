@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TimerControl from "./TimerControl";
 import TimerDisplay from "./TimerDisplay";
 import ModeSelector from "./ModeSelector";
+import useAlarm from "../Utility/Alarm";
 
 export default function MainBody({
   selectedMode,
@@ -18,6 +19,7 @@ export default function MainBody({
     bg-[#ffffff4d] rounded-lg overflow-hidden`;
 
   const { focusOn, shortBreak, longBreak, interval } = settings;
+  const { playAndStopAlarm, alarmRef } = useAlarm();
   const [focusCount, setFocusCount] = useState(1);
 
   let duration;
@@ -35,28 +37,28 @@ export default function MainBody({
   // auto countdown
   useEffect(() => {
     let timer = undefined;
+
     if (timeleft <= 0) {
-      if (isRunning) {
-        setIsRunning(false);
-      }
+      playAndStopAlarm();
 
       timer = setTimeout(() => {
         if (selectedMode === 'focus-on') {
           if (focusCount % interval === 0) {
             setSelectedMode('long-break');
-
+            setTimeleft(longBreak)
           } else {
             setSelectedMode('short-break')
+            setTimeleft(shortBreak)
           }
         } else {
           setSelectedMode('focus-on')
+          setTimeleft(focusOn)
           setFocusCount(prev => prev + 1)
         }
+        if (!isRunning) {
+          setIsRunning(true);
+        }
       }, 1500)
-
-      if (!isRunning) {
-        setIsRunning(true);
-      }
     }
 
     return () => clearTimeout(timer)
