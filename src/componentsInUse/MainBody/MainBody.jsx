@@ -13,15 +13,17 @@ export default function MainBody({
   isRunning,
   setIsRunning,
   settings,
-  handleOnSave
+  alarmRefObj
 }) {
   const baseStyle = `w-full min-h-[300px] p-5 flex 
     flex-col justify-between items-center relative 
     bg-[#ffffff4d] rounded-lg overflow-hidden`;
 
   const { focusOn, shortBreak, longBreak, interval } = settings;
-  const { playAndStopAlarm, alarmRef } = useAlarm();
+  const { alarmRefTimeoutId } = alarmRefObj
+  const { playAlarm, stopAlarm } = useAlarm(alarmRefObj);
   const [focusCount, setFocusCount] = useState(1);
+
 
   let duration;
   switch (selectedMode) {
@@ -40,7 +42,9 @@ export default function MainBody({
     let timer = undefined;
 
     if (timeleft <= 0) {
-      playAndStopAlarm();
+      playAlarm();
+
+      alarmRefTimeoutId.current = setTimeout(stopAlarm, 3000)
 
       timer = setTimeout(() => {
         if (selectedMode === 'focus-on') {
@@ -62,7 +66,9 @@ export default function MainBody({
       }, 1500)
     }
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer);
+    }
   }, [timeleft, isRunning])
 
   const handleStartToggle = () => {

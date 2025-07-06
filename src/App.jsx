@@ -1,10 +1,9 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useCallback, useRef, useMemo } from 'react'
 import './index.css'
 import Header from './componentsInUse/Header/Header'
 import SettingsModal from './componentsInUse/SettingsModal/SettingsModal'
 import useCountdown from './componentsInUse/Utility/Countdown';
 import MainBody from './componentsInUse/MainBody/MainBody';
-import useAlarm from './componentsInUse/Utility/Alarm';
 
 export default function App() {
   // "focus-on" | "short-break" | "long-break"
@@ -17,6 +16,14 @@ export default function App() {
     longBreak: 15,
     interval: 4
   });
+
+  // init alarm audio
+  const alarmRef = useRef(new Audio('/sound/alarm-buzzer.wav'));
+  const alarmRefTimeoutId = useRef(null);
+  const alarmObj = useMemo(() => {
+    return { alarmRef, alarmRefTimeoutId }
+  }, [])
+
 
   let initialDuration;
   switch (selectedMode) {
@@ -79,7 +86,7 @@ export default function App() {
           setIsRunning={setIsRunning}
           setTimeleft={setTimeleft}
           settings={settings}
-        // alarm={{ playAndStopAlarm, alarmRef }}
+          alarmRefObj={alarmObj}
         />
       </div>
     </>
