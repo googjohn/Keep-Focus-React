@@ -3,6 +3,7 @@ import TimerControl from "./TimerControl";
 import TimerDisplay from "./TimerDisplay";
 import ModeSelector from "./ModeSelector";
 import useAlarm from "../Utility/Alarm";
+import MessageQuote from "../MessageQuote/MessageQuote";
 import { notificationRequest, showNotification } from "../Utility/Notification";
 
 export default function MainBody({
@@ -42,9 +43,9 @@ export default function MainBody({
     let timer = undefined;
 
     if (timeleft <= 0) {
-      playAlarm();
-      showNotification(selectedMode, focusCount % interval === 0)
-      alarmRefTimeoutId.current = setTimeout(stopAlarm, 3000)
+      // playAlarm();
+      // showNotification(selectedMode, focusCount % interval === 0)
+      // alarmRefTimeoutId.current = setTimeout(stopAlarm, 3000)
 
       timer = setTimeout(() => {
         if (selectedMode === 'focus-on') {
@@ -87,6 +88,12 @@ export default function MainBody({
           <TimerControl
             isRunning={isRunning}
             handleOnClick={handleStartToggle}
+          />
+        </div>
+        <div id="quotes-message" className="mt-5">
+          <MessageQuote
+            selectedMode={selectedMode}
+            focusCount={focusCount}
           />
         </div>
       </main>
