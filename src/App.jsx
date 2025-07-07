@@ -18,7 +18,7 @@ export default function App() {
     interval: 4
   });
 
-  // call/initialize settings if there is user input saved
+  // call/initialize settings once if there is user input saved
   useEffect(() => {
     UseSavedSettings(setSettings)
   }, [])
@@ -57,14 +57,14 @@ export default function App() {
     const { name, value } = e.target;
     setIsRunning(false);
 
-    let keyToUpdate;
-    switch (name) {
-      case 'focus-on': keyToUpdate = 'focusOn'; break;
-      case 'short-break': keyToUpdate = 'shortBreak'; break;
-      case 'long-break': keyToUpdate = 'longBreak'; break;
-      case 'interval': keyToUpdate = 'interval'; break;
-      default: return;
+    const keyObj = {
+      'focus-on': 'focusOn',
+      'short-break': 'shortBreak',
+      'long-break': 'longBreak',
+      'interval': 'interval',
     }
+    let keyToUpdate = keyObj[name]
+
     setSettings(prev => {
       return {
         ...prev,

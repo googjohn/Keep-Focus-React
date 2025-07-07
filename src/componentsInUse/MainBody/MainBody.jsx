@@ -3,6 +3,7 @@ import TimerControl from "./TimerControl";
 import TimerDisplay from "./TimerDisplay";
 import ModeSelector from "./ModeSelector";
 import useAlarm from "../Utility/Alarm";
+import { notificationRequest, showNotification } from "../Utility/Notification";
 
 export default function MainBody({
   selectedMode,
@@ -42,7 +43,7 @@ export default function MainBody({
 
     if (timeleft <= 0) {
       playAlarm();
-
+      showNotification(selectedMode, focusCount % interval === 0)
       alarmRefTimeoutId.current = setTimeout(stopAlarm, 3000)
 
       timer = setTimeout(() => {
@@ -71,6 +72,7 @@ export default function MainBody({
   }, [timeleft, isRunning])
 
   const handleStartToggle = () => {
+    notificationRequest();
     setIsRunning(!isRunning)
   }
   return (

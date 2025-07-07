@@ -143,7 +143,6 @@ function InputGroup({ handleOnChange, settings }) {
               label={"Focus"}
               name={"focus-on"}
               id={"modal-focus-on"}
-              dataValue={25}
               value={focusOn}
               handleOnChange={handleOnChange} />
           </div>
@@ -152,7 +151,6 @@ function InputGroup({ handleOnChange, settings }) {
               label={"Short Break"}
               name={"short-break"}
               id={"modal-short-break"}
-              dataValue={5}
               value={shortBreak}
               handleOnChange={handleOnChange} />
           </div>
@@ -161,7 +159,6 @@ function InputGroup({ handleOnChange, settings }) {
               label={"Long Break"}
               name={"long-break"}
               id={"modal-long-break"}
-              dataValue={15}
               value={longBreak}
               handleOnChange={handleOnChange} />
           </div>
@@ -172,7 +169,6 @@ function InputGroup({ handleOnChange, settings }) {
           label={"Interval"}
           name={"interval"}
           id={"modal-interval"}
-          dataValue={4}
           className={"interval"}
           min={3}
           value={interval}
@@ -200,7 +196,7 @@ function ButtonGroup({ handleOnClick }) {
   )
 }
 
-function ModalInput({ handleOnChange, label, name, id, dataValue, value, min, className }) {
+function ModalInput({ handleOnChange, label, name, id, value, min, className }) {
   const baseClass = 'modal-input'
   const classNames = `${baseClass} ${className}`
 
@@ -217,7 +213,6 @@ function ModalInput({ handleOnChange, label, name, id, dataValue, value, min, cl
         type="number"
         value={value}
         min={min || 1}
-        data-value={dataValue}
         className={classNames}
         onChange={handleOnChange}
       />
