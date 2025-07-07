@@ -51,7 +51,6 @@ export function useFetch(url) {
     }
   }, [fetchData])
 
-  return { quotes, setQuotes }
+  return { quotes, setQuotes, refetch: fetchData }
 
 }
-

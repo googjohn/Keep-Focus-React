@@ -7,18 +7,14 @@ export default function MessageQuote({ selectedMode, focusCount }) {
     bg-[#ffffff4d] rounded-lg overflow-hidden`;
 
   const { quotes } = useFetch('/data/data.json');
-  const [randomIndex, setRandomIndex] = useState(0);
   const [randomQuote, setRandomQuote] = useState({})
 
   useEffect(() => {
-    setRandomIndex(Math.floor(Math.random() * quotes.length))
-  }, [quotes, focusCount])
-
-  useEffect(() => {
     if (quotes.length > 0) {
-      setRandomQuote(quotes[randomIndex])
+      const index = (Math.floor(Math.random() * quotes.length))
+      setRandomQuote(quotes[index])
     }
-  }, [quotes, randomIndex])
+  }, [quotes, focusCount])
 
   return (
     <div id="message-container" className="text-center">
@@ -32,7 +28,7 @@ export default function MessageQuote({ selectedMode, focusCount }) {
         {
           quotes.length > 0 && (
             <blockquote>
-              &ldquo;{randomQuote.quote}&ldquo; &mdash;
+              &ldquo;{randomQuote.quote}&rdquo; &mdash;
               <footer>{randomQuote.author}</footer>
             </blockquote>
           )
