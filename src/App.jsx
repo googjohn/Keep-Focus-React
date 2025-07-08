@@ -67,7 +67,7 @@ export default function App() {
     setSettings(prev => {
       return {
         ...prev,
-        [keyToUpdate]: +value,
+        [keyToUpdate]: +value || 1,
       }
     })
   }, [])

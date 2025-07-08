@@ -8,7 +8,7 @@ export default function useCountdown(initialDuration = 25) {
   useEffect(() => {
     let timer = undefined;
 
-    if (timeleft <= 0) {
+    if (timeleft <= 0 && isRunning) {
       setIsRunning(false);
       return;
     }

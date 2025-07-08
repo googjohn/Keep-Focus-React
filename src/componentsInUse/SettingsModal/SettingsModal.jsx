@@ -211,7 +211,7 @@ function ModalInput({ handleOnChange, label, name, id, value, min, className }) 
         id={id}
         name={name}
         type="number"
-        value={value}
+        value={value || 1}
         min={min || 1}
         className={classNames}
         onChange={handleOnChange}

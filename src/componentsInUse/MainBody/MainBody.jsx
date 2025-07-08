@@ -42,7 +42,7 @@ export default function MainBody({
   useEffect(() => {
     let timer = undefined;
 
-    if (timeleft <= 0) {
+    if (timeleft <= 0 && !isRunning) {
       playAlarm();
       showNotification(selectedMode, focusCount % interval === 0)
       alarmRefTimeoutId.current = setTimeout(stopAlarm, 4500)
