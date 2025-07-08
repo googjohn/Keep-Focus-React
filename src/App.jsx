@@ -36,7 +36,7 @@ export default function App() {
     'long-break': settings.longBreak
   }
 
-  let initialDuration = modeSelection[selectedMode]
+  let initialDuration = modeSelection[selectedMode] * 60
 
   // init timeleft
   const { timeleft, setTimeleft, isRunning, setIsRunning } = useCountdown(initialDuration);

@@ -39,7 +39,7 @@ export function useFetch(url) {
         console.error('Fetching falied.', error)
       }
     }
-  }, [url])
+  }, [])
 
   useEffect(() => {
     fetchData();

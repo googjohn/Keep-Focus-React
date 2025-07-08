@@ -31,9 +31,9 @@ export default function MainBody({
     'short-break': shortBreak,
     'long-break': longBreak
   }
+  const MULTIPLIER = 60;
   let duration = modeSelection[selectedMode];
 
-  const MULTIPLIER = 1;
   useEffect(() => {
     setTimeleft(duration * MULTIPLIER)
   }, [duration])
@@ -43,28 +43,29 @@ export default function MainBody({
     let timer = undefined;
 
     if (timeleft <= 0) {
-      // playAlarm();
-      // showNotification(selectedMode, focusCount % interval === 0)
-      // alarmRefTimeoutId.current = setTimeout(stopAlarm, 3000)
+      playAlarm();
+      showNotification(selectedMode, focusCount % interval === 0)
+      alarmRefTimeoutId.current = setTimeout(stopAlarm, 4500)
 
       timer = setTimeout(() => {
-        if (selectedMode === 'focus-on') {
-          if (focusCount % interval === 0) {
-            setSelectedMode('long-break');
-            setTimeleft(longBreak)
-          } else {
-            setSelectedMode('short-break')
-            setTimeleft(shortBreak)
-          }
-        } else {
-          setSelectedMode('focus-on')
-          setTimeleft(focusOn)
-          setFocusCount(prev => prev + 1)
-        }
         if (!isRunning) {
           setIsRunning(true);
         }
+        if (selectedMode === 'focus-on') {
+          if (focusCount % interval === 0) {
+            setSelectedMode('long-break');
+            setTimeleft(longBreak * MULTIPLIER)
+          } else {
+            setSelectedMode('short-break')
+            setTimeleft(shortBreak * MULTIPLIER)
+          }
+        } else {
+          setSelectedMode('focus-on')
+          setTimeleft(focusOn * MULTIPLIER)
+          setFocusCount(prev => prev + 1)
+        }
       }, 1500)
+
     }
 
     return () => {
