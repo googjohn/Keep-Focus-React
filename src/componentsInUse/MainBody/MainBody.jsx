@@ -36,8 +36,12 @@ export default function MainBody({
 
   useEffect(() => {
     setTimeleft(duration * MULTIPLIER)
-  }, [duration])
+  }, [duration, selectedMode])
 
+  // time bar indicator
+  useEffect(() => {
+
+  }, [timeleft])
   // auto countdown
   useEffect(() => {
     let timer = undefined;
@@ -48,9 +52,7 @@ export default function MainBody({
       alarmRefTimeoutId.current = setTimeout(stopAlarm, 4500)
 
       timer = setTimeout(() => {
-        if (!isRunning) {
-          setIsRunning(true);
-        }
+
         if (selectedMode === 'focus-on') {
           if (focusCount % interval === 0) {
             setSelectedMode('long-break');
@@ -63,6 +65,9 @@ export default function MainBody({
           setSelectedMode('focus-on')
           setTimeleft(focusOn * MULTIPLIER)
           setFocusCount(prev => prev + 1)
+        }
+        if (!isRunning) {
+          setIsRunning(true);
         }
       }, 1500)
 

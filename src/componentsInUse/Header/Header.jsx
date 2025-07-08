@@ -1,15 +1,21 @@
 import Button from "../Utility/Button"
+import TimerIndicator from "../Utility/TimerIndicator"
 
-export default function Header({ handleOpenModal }) {
+export default function Header({ timeleft, isRunning, duration, handleOpenModal }) {
   const baseStyle = `relative max-w-[550px] min-w-[400px]
     h-[80px] p-[10px] m-auto text-gray-200 flex justify-between
-    items-center border-[#b6b2b2] border-b-2`
+    items-center border-[#8a8a8a] border-b-2`
 
   return (
     <>
       <header className={baseStyle}>
         <AppTitle title={'Keep Focus'} />
         <SettingsButton handleOnClick={handleOpenModal} />
+        <TimerIndicator
+          timeleft={timeleft}
+          isRunning={isRunning}
+          duration={duration}
+        />
       </header>
     </>
   )

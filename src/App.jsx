@@ -51,6 +51,8 @@ export default function App() {
     if (name === selectedMode) return;
     setSelectedMode(name);
     setIsRunning(false)
+    console.log(settings)
+    console.log(timeleft)
   }
 
   const handleOnChangeSettings = useCallback((e) => {
@@ -64,7 +66,7 @@ export default function App() {
       'interval': 'interval',
     }
     let keyToUpdate = keyObj[name]
-
+    console.log(value)
     setSettings(prev => {
       return {
         ...prev,
@@ -76,7 +78,12 @@ export default function App() {
   return (
     <>
       <div id="App" className={selectedMode}>
-        <Header handleOpenModal={handleOpenModal} />
+        <Header
+          timeleft={timeleft}
+          isRunning={isRunning}
+          duration={initialDuration}
+          handleOpenModal={handleOpenModal}
+        />
         <SettingsModal
           settings={settings}
           isModalOpen={isModalOpen}
