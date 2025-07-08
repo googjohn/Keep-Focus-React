@@ -47,6 +47,7 @@ export function showNotification(selectedMode, breakType) {
       tag: 'keep-focus-time-end',
       icon: 'https://fav.farm/clock',
       badge: 'https://fav.farm/clock',
+      renotify: true,
     };
 
     const newNotification = new Notification(notifTitle, notifOptions)

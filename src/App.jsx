@@ -51,8 +51,6 @@ export default function App() {
     if (name === selectedMode) return;
     setSelectedMode(name);
     setIsRunning(false)
-    console.log(settings)
-    console.log(timeleft)
   }
 
   const handleOnChangeSettings = useCallback((e) => {
@@ -66,7 +64,6 @@ export default function App() {
       'interval': 'interval',
     }
     let keyToUpdate = keyObj[name]
-    console.log(value)
     setSettings(prev => {
       return {
         ...prev,

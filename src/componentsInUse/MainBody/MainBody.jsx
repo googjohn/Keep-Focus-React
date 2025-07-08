@@ -38,10 +38,6 @@ export default function MainBody({
     setTimeleft(duration * MULTIPLIER)
   }, [duration, selectedMode])
 
-  // time bar indicator
-  useEffect(() => {
-
-  }, [timeleft])
   // auto countdown
   useEffect(() => {
     let timer = undefined;
